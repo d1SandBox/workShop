@@ -5,6 +5,7 @@ pipeline {
   stages {
     stage('Dit Bonjour') {
       parallel {
+        
         stage('Dit Bonjour') {
           steps {
             echo "Hello ${params.Name}!"
@@ -13,10 +14,8 @@ pipeline {
             echo "Password: ${TEST_USER_PSW}"
           }
         }
-  stage('Deploy') {
-      options {
-        timeout(time: 30, unit: 'SECONDS') 
-      }
+        
+  stage('Deploy') {     
      input {
         message "Which Version?"
         ok "Deploy"
@@ -28,27 +27,10 @@ pipeline {
         echo "Deploying ${APP_VERSION}."
       }
     }
+     
       }
     }
-  }
-  stage('Get Kernel') {
-      steps {
-        script {
-          try {
-            KERNEL_VERSION = sh (script: "uname -r", returnStdout: true)
-          } catch(err) {
-            echo "CAUGHT ERROR: ${err}"
-            throw err
-          }
-        }
-      }
-    }
-    stage('Say Kernel') {
-      steps {
-        echo "${KERNEL_VERSION}"
-      }
-    }
-  environment {
+   environment {
     MY_NAME = 'D1@N3'
     TEST_USER = credentials('test-user')
   }
