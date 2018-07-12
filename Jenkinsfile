@@ -7,8 +7,8 @@ pipeline {
       steps {
         echo "Bonjour ${MY_NAME}"
         sh 'java -version'
-        echo "${TEST_USER_USR}"
-        echo "${TEST_USER_PSW}"
+        echo "Username: ${TEST_USER_USR}"
+        echo "Password: ${TEST_USER_PSW}"
       }
     }
   }
