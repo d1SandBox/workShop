@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Dit Bonjour') {
       steps {
-        echo "Bonjour ${MY_NAME}"
+        echo "Hello ${params.Name}!"
         sh 'java -version'
         echo "Username: ${TEST_USER_USR}"
         echo "Password: ${TEST_USER_PSW}"
@@ -17,6 +17,6 @@ pipeline {
     TEST_USER = credentials('test-user')
   }
   parameters {
-    string(name: 'My Name', defaultValue: "${MY_NAME}", description: 'Who should I say hi to?')
+    string(name: 'My Name', defaultValue: 'Diane', description: 'Who should I say hi to?')
   }
 }
