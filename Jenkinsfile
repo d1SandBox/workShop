@@ -6,5 +6,10 @@ pipeline {
         echo 'Bonjour Le Monde'
       }
     }
+    stage('Java Version') {
+      steps {
+        echo 'java -version'
+      }
+    }
   }
 }
