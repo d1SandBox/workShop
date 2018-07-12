@@ -13,17 +13,21 @@ pipeline {
             echo "Password: ${TEST_USER_PSW}"
           }
         }
-        stage('Deploy') {
-          options {
-            timeout(time: 30, unit: 'SECONDS')
-          }
-          input {
-            message 'Should we continue?'
-          }
-          steps {
-            echo 'Continuing with deployment'
-          }
+  stage('Deploy') {
+      options {
+        timeout(time: 30, unit: 'SECONDS') 
+      }
+      input {
+        message "Which Version?"
+        ok "Deploy"
+        parameters {
+            choice(name: 'APP_VERSION', choices: "v1.1\nv1.2\nv1.3", description: 'What to deploy?')
         }
+      }
+      steps {
+        echo "Deploying ${APP_VERSION}."
+      }
+    }
       }
     }
   }
