@@ -36,7 +36,7 @@ pipeline {
     TEST_USER = credentials('test-user')
   }
   parameters {
-    string(name: 'Name', defaultValue: "${MY_NAME}", description: 'Who should I say hi to?')
+    string(name: 'Name', defaultValue: "D1An3", description: 'Who should I say hi to?')
   }
    post {
     aborted {
