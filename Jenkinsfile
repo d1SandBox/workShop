@@ -4,11 +4,23 @@ pipeline {
   }
   stages {
     stage('Dit Bonjour') {
-      steps {
-        echo "Hello ${params.Name}!"
-        sh 'java -version'
-        echo "Username: ${TEST_USER_USR}"
-        echo "Password: ${TEST_USER_PSW}"
+      parallel {
+        stage('Dit Bonjour') {
+          steps {
+            echo "Hello ${params.Name}!"
+            sh 'java -version'
+            echo "Username: ${TEST_USER_USR}"
+            echo "Password: ${TEST_USER_PSW}"
+          }
+        }
+        stage('Deploy') {
+          input {
+            message 'Should we continue?'
+          }
+          steps {
+            echo 'Continuing with deployment'
+          }
+        }
       }
     }
   }
